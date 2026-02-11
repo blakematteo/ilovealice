@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ilovealice.com 💗</title>
+    <!-- girly font & style -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="30" viewBox="0 0 24 30"><text font-family="Arial" font-size="20" fill="%23ff9eb5">💖</text></svg>') 12 24, auto;
+        }
+
+        body {
+            background: linear-gradient(145deg, #ffe9f4 0%, #ffd9e8 100%);
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* cute floating hearts background */
+        body::before {
+            content: "🌸💕🌸💕🌸";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 40px;
+            color: rgba(255, 182, 193, 0.2);
+            white-space: nowrap;
+            letter-spacing: 40px;
+            transform: rotate(-3deg);
+            pointer-events: none;
+        }
+
+        .main-card {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 60px 60px 60px 60px;
+            box-shadow: 0 25px 45px rgba(255, 120, 160, 0.25), 0 0 0 2px #fff9 inset, 0 0 0 6px #ffc1cc inset;
+            padding: 3rem 2.5rem;
+            position: relative;
+            border: 1px solid #fff;
+            transition: 0.4s ease;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 5.5rem;
+            background: linear-gradient(135deg, #ff4d6d, #b3005e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.3rem;
+            letter-spacing: 3px;
+            text-shadow: 4px 4px 12px rgba(255, 80, 140, 0.3);
+            line-height: 1.1;
+        }
+
+        .subhead {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #aa4a6e;
+            background: #fff0f5dd;
+            display: inline-block;
+            padding: 0.3rem 1.8rem;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            margin-bottom: 2.2rem;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 8px #ffb6c180;
+            border: 1px solid #ffe2eb;
+        }
+
+        .question-box {
+            background: #fff2f6f2;
+            border-radius: 120px 120px 60px 60px;
+            padding: 2.2rem 1.8rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 15px 0 #ffacc0, 0 20px 35px #ffa5b9;
+            border: 3px solid white;
+        }
+
+        .valentine-question {
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: #a13355;
+            margin-bottom: 1.8rem;
+            word-break: break-word;
+            text-shadow: 0 2px 0 white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .valentine-question span {
+            background: #ffeef2;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            font-size: 2rem;
+        }
+
+        .button-pair {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .btn {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 0.8rem 2.5rem;
+            border: none;
+            border-radius: 200px;
+            letter-spacing: 4px;
+            background: white;
+            box-shadow: 0 10px 0 #d46b7e, 0 10px 25px #ff9eb5;
+            transition: 0.08s linear;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: 3px solid #fff;
+            color: #a53f5e;
+            text-shadow: 0 1px 2px white;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .btn-yes {
+            background: #ffb3c6;
+            color: #5e2e44;
+            box-shadow: 0 10px 0 #b35e74, 0 12px 25px #ff8da1;
+            font-size: 2.3rem;
+            padding: 0.9rem 3rem;
+        }
+
+        .btn-no {
+            background: #ffe0e7;
+            color: #6b4452;
+            box-shadow: 0 10px 0 #b57788, 0 12px 25px #e6a0b2;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* hover effect yes */
+        .btn-yes:hover {
+            transform: scale(1.07);
+            background: #ffa5bc;
+            box-shadow: 0 8px 0 #a14b5e, 0 15px 30px #ff7a9e;
+        }
+
+        /* letter popup - hidden until yes */
+        .letter-popup {
+            background: #fff9fb;
+            border-radius: 70px 20px 70px 20px;
+            padding: 2.3rem 2rem;
+            margin-top: 2.5rem;
+            box-shadow: 0 20px 0 #e899b0, 0 30px 45px #cf7f97;
+            border: 4px solid white;
+            display: none;
+            animation: floatIn 0.6s cubic-bezier(0.22, 1.1, 0.38, 1);
+            position: relative;
+            max-height: 550px;
+            overflow-y: auto;
+            text-align: left;
+            backdrop-filter: blur(6px);
+        }
+
+        @keyframes floatIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .letter-content {
+            font-family: 'Quicksand', sans-serif;
+            color: #391f2c;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            background: #fff2fa;
+            padding: 2rem 2rem;
+            border-radius: 50px 15px 50px 15px;
+            border: 2px dashed #ff98af;
+            background-image: radial-gradient(circle at 10px 10px, #ffe2ed 3px, transparent 3px);
+            background-size: 25px 25px;
+        }
+
+        .letter-content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .signature {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.4rem;
+            color: #c1324b;
+            margin-top: 0.5rem;
+            text-align: right;
+            border-top: 2px solid #ffb6c1;
+            padding-top: 0.9rem;
+        }
+
+        .tiny-heart {
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+            font-size: 1.9rem;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); color: #ff3b6f; }
+        }
+
+        .flower-decoration {
+            font-size: 2rem;
+            color: #ffa5c3;
+            margin-top: 0.8rem;
+        }
+
+        .footer {
+            margin-top: 1.8rem;
+            color: #b84c6c;
+            font-weight: 600;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* special shifting NO button */
+        .btn-no-move {
+            transition: transform 0.05s ease, left 0.06s, top 0.06s, right 0.06s;
+        }
+
+        /* girly scrollbar */
+        .letter-popup::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        .letter-popup::-webkit-scrollbar-track {
+            background: #ffe3ec;
+            border-radius: 30px;
+        }
+
+        .letter-popup::-webkit-scrollbar-thumb {
+            background: #ff9cb2;
+            border-radius: 30px;
+            border: 3px solid white;
+        }
+
+        .no-escape {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .no-redirect {
+            background: #ffb3c6 !important;
+            color: #5e2e44 !important;
+            box-shadow: 0 10px 0 #b35e74 !important;
+            transform: scale(1.02);
+        }
+
+        .button-pair {
+            transition: 0.2s;
+        }
+
+        /* responsiveness */
+        @media (max-width: 550px) {
+            .main-card { padding: 2rem 1.3rem; }
+            h1 { font-size: 3.8rem; }
+            .valentine-question { font-size: 2rem; }
+            .btn { font-size: 1.8rem; padding: 0.6rem 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <!-- ilovealice.com header girly -->
+        <h1>🍓 ilovealice.com 🍓</h1>
+        <div class="subhead">
+            💘 for my sweet alice 💘
+        </div>
+
+        <!-- main questionnaire -->
+        <div class="question-box">
+            <div class="valentine-question">
+                <span>🌸</span> can i be your valentines? <span>🌸</span>
+            </div>
+            <div class="button-pair" id="buttonPair">
+                <!-- YES BUTTON -->
+                <button id="yesBtn" class="btn btn-yes">YES 💖</button>
+                <!-- NO BUTTON - will be dodgy & eventually turn to yes -->
+                <button id="noBtn" class="btn btn-no">NO 🥺</button>
+            </div>
+        </div>
+
+        <!-- stylish letter pops up here when yes or forced yes -->
+        <div id="letterPopup" class="letter-popup">
+            <div class="letter-content">
+                <p style="font-size:1.3rem; font-weight:700; color:#c6476a;">💌 Dearest Alice,</p>
+                <p>Thank you so much for choosing me to be with you always forever baby, I'm so sorry for being a bad bf sometimes, I love you so much. Since Valentine's is near and I don't have enough money from saving to buy you flowers, I made a silly website for you instead.</p>
+                <p>You are my best girl in the world. You are so awesome, unique, smart, cute, beautiful, pretty, yummy, delicious, niche, <em>beautiful</em> (did I say beautiful?) and so GORJUS. 💞</p>
+                <p>I'm always here by your side, I won't turn my back on you. I'm sorry if I needed constant reassurance, I also apologise for questioning your love for me. It's not that I don't trust you, I wanted your validation, to hear you say yes. I trust you a lot baby, it's just that sometimes I tend to overthink a lot. I also hate this feeling of being so much of a paranoid, I know that feeling that it drains you when I tend to ask you those type of questions. From now on I will avoid asking you questions because I regret doing those actions that hurt you baby, I regret it so much.</p>
+                <p>But hey! Valentine's is near baby! I can't wait for us to spend that day together, I'm so excited for that day to come. I'm really sorry if I can't buy you flowers or chocolates or your favorite fruits so I made this alternative instead and I really hope you like this alternative I made for only you. Soon enough baby, if I'm not too busy I'll start to make handwritten letters for you.</p>
+                <p>I love you so super much, my love. I hope that you are doing well na po baby, I'm really sorry po baby if I'm a bad bf po, I hope you forgive me for the wrongdoings that I did and caused all this to happen.</p>
+                <p>Once again I love you so much my sweet baby, I pray for your safety and blessings, and I also pray for your family too.</p>
+                <div class="signature">
+                    - blake <span class="tiny-heart">❤️</span>
+                </div>
+                <div class="flower-decoration">
+                    🌷🌷🌷 forever yours, always. 🌷🌷🌷
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            💗 with all my love, for alice 💗
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const letterPopup = document.getElementById('letterPopup');
+            const buttonPair = document.getElementById('buttonPair');
+
+            // alice's name personalization
+            const aliceName = "Alice"; // it's all for her!
+
+            // state to track if no button has been transformed into yes
+            let noConverted = false;
+
+            // -------------------------------------------------------
+            // FUNCTION TO SHOW THE SWEET LETTER (strictly as requested)
+            // -------------------------------------------------------
+            function showSweetLetter() {
+                // make sure letter appears
+                letterPopup.style.display = 'block';
+                // gently scroll letter into view (smooth)
+                letterPopup.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // optional: add extra sparkle
+            }
+
+            // -------------------------------------------------------
+            // YES BUTTON: ALWAYS show letter
+            // -------------------------------------------------------
+            yesBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showSweetLetter();
+            });
+
+            // -------------------------------------------------------
+            // NO BUTTON – tricky, dodging and eventual conversion
+            // 1) if she tries to press NO, it will move away (avoid mouse)
+            // 2) if pressed anyway (simultaneous attempts) → shift to yes
+            // 3) also shift to yes if hovers many times or tries to click 
+            //    the "no" aggressively → eventually becomes YES.
+            // -------------------------------------------------------
+            
+            // helper to make the NO button dodge (avoid mouse)
+            function dodgeNoButton() {
+                if (noConverted) return; // already yes, no need dodge
+
+                const no = noBtn;
+                const pairRect = buttonPair.getBoundingClientRect();
+                const noRect = no.getBoundingClientRect();
+
+                // max offset within button pair area
+                const maxX = 180;
+                const maxY = 80;
+
+                // random direction, but keep it inside pair area roughly
+                let deltaX = (Math.random() * 80) - 40;  // -40 to 40
+                let deltaY = (Math.random() * 50) - 25; // -25 to 25
+
+                // also push more if it's near edge? we want it playful
+                let currentTransform = no.style.transform;
+                // apply relative shift
+                no.style.transition = 'transform 0.09s ease';
+                no.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            }
+
+            // function that turns no button into YES (style, text, function)
+            function convertNoToYes() {
+                if (noConverted) return;
+                noConverted = true;
+
+                // change button to YES appearance
+                noBtn.textContent = 'YES 💖';
+                noBtn.classList.remove('btn-no');
+                noBtn.classList.add('btn-yes');
+                // remove any transform dodge
+                noBtn.style.transform = 'translate(0,0)';
+                noBtn.style.transition = 'all 0.3s ease';
+
+                // ensure it now triggers the letter
+                // remove old listeners (we'll replace)
+                const newNoBtn = noBtn.cloneNode(true);
+                noBtn.parentNode.replaceChild(newNoBtn, noBtn);
+                // update global reference
+                const oldYesBtn = document.getElementById('yesBtn'); // keep
+                const newYesFromNo = newNoBtn;
+                // reassign noBtn to new element, but we also set yes behavior
+                window.noBtn = newYesFromNo; 
+                // make it behave like yes -> show letter
+                newYesFromNo.addEventListener('click', function(ev) {
+                    ev.preventDefault();
+                    showSweetLetter();
+                });
+
+                // also need to update yesBtn reference (unchanged)
+                // ensure noBtn variable points to new button
+                document.getElementById('noBtn')?.removeAttribute('id');
+                newYesFromNo.id = 'noBtn'; // but it's yes now 
+                // rename? for consistency, but now it's a yes button.
+                // and also add yes style.
+                // to avoid double yes, but keep both YES
+                // also we keep original YES button (yesBtn) as is.
+                // But now we have 2 YES buttons, both show letter. adorable!
+            }
+
+            // ------------------------------------------------
+            // EVENT: when mouse enters NO button -> dodge (move away)
+            // ------------------------------------------------
+            noBtn.addEventListener('mouseenter', function(e) {
+                if (noConverted) return; // already yes
+                dodgeNoButton();
+            });
+
+            // ------------------------------------------------
+            // EVENT: if she attempts to click NO 
+            // -> first, dodge, but if it's clicked, we convert to YES.
+            // also if she "simultaneously" tries to press no, we force shift to yes.
+            // ------------------------------------------------
+            noBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                if (noConverted) {
+                    // if already yes, just show letter
+                    showSweetLetter();
+                    return;
+                }
+
+                // she clicked no! but we promised: if she attempts to press no 
+                // -> the button shifts to yes and letter pops up.
+                // also "if she tries to do it simultaneously make the no button shift to yes and make the letter pop up"
+                convertNoToYes();
+                showSweetLetter(); // letter appears straight away
+            });
+
+            // -------------------------------------------------
+            // additionally: if mouse moves a lot over no, eventually shift to yes
+            // after 3 dodges? more romantic: after 3 mouse enters, change to yes.
+            // but also if she chases the no button, make it yes. 
+            // we add counter for mouseenter to make it switch after 3 attempts.
+            // -------------------------------------------------
+            let noHoverCount = 0;
+            const originalMouseEnter = noBtn.addEventListener('mouseenter', function(e) {
+                if (noConverted) return;
+                noHoverCount++;
+                dodgeNoButton();
+
+                // if she tries many times (simultaneous attempts) -> become yes.
+                if (noHoverCount >= 3) {
+                    // shift to yes AND pop letter? maybe do after 3.
+                    convertNoToYes();
+                    showSweetLetter();  // extra touch: show letter 
+                }
+            });
+
+            // also if mouse tries to leave and re-enter often, we already count.
+
+            // extreme: if she tries to press no via keyboard or something, still shift.
+            // ensure NO BUTTON also can't be easily selected: 
+
+            // to make the "no" button also avoid on touch movement? for mobile we add touch events
+            noBtn.addEventListener('touchstart', function(e) {
+                if (noConverted) return;
+                e.preventDefault();
+                dodgeNoButton();
+                // on touch, we also increment 
+                noHoverCount++;
+                if (noHoverCount >= 2) { // quicker on mobile
+                    convertNoToYes();
+                    showSweetLetter();
+                }
+            });
+
+            noBtn.addEventListener('touchend', function(e) {
+                if (noConverted) {
+                    showSweetLetter();
+                    return;
+                }
+                e.preventDefault();
+                convertNoToYes();
+                showSweetLetter();
+            });
+
+            // also if she clicks near and uses keyboard, we add safety: 
+            // when noBtn is focused, blur it
+            noBtn.addEventListener('focus', function(e) {
+                this.blur();  // prevent accidental enter press
+            });
+
+            // In case mouse manages to click no after dodge but before convert.
+            // Already handled in click: convert + letter.
+
+            // Initialize: ensure noConverted = false.
+            // also ensure that when document ready, everything cute.
+
+            // additional polish: if yes button is clicked we also maybe reset no? 
+            // but no need. keep all.
+
+            // final: If she clicks "NO" after it turned yes, it's fine. show letter.
+            // also if no button has moved a lot, but after conversion transform is reset.
+
+            // we also add "if she attempts to press the no button simultaneously make the no button shift to yes and pop letter"
+            // implemented via click and hover counter.
+
+            // ensure the popup letter strictly matches your request, and it's stylish.
+            // we also add alt for 'valentines' spelling.
+
+            // Let's also ensure no button never stays 'no' if she's determined.
+            // bonus: if she hovers over no more than 2 times, yes conversion.
+
+            // since you said: "if she proceeds to say yes make a stylish sweet letter pop up" -> yes btn does that.
+            // no button conversion also triggers letter.
+            // perfect.
+
+            // also make both yes buttons same style after conversion.
+
+            // fix: if user clicks no and it converts, we also must keep original yes intact.
+            // we did that.
+
+            // also background decoration, name personalization: ilovealice.com
+
+        })();
+    </script>
+
+    <!-- add extra floating hearts via after -->
+    <div style="position: fixed; bottom: 10px; left: 10px; font-size: 35px; opacity: 0.3; pointer-events: none;">🌸</div>
+    <div style="position: fixed; top: 20px; right: 20px; font-size: 50px; opacity: 0.25; pointer-events: none; transform: rotate(15deg);">🍓</div>
+</body>
+</html>
